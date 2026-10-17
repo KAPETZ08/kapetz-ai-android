@@ -5,8 +5,8 @@
     <application
         android:allowBackup="true"
         android:label="KAPETZ AI"
-        android:theme="@android:style/Theme.Material.Light.NoActionBar"
-        android:usesCleartextTraffic="false">
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.Material.Light.NoActionBar">
 
         <activity
             android:name=".MainActivity"
@@ -19,4 +19,5 @@
 
         </activity>
     </application>
+
 </manifest>
