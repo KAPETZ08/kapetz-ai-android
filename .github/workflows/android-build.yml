@@ -25,13 +25,15 @@ jobs:
           java-version: '17'
 
       - name: Check Android SDK
-        run: ls "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+        run: test -x "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
 
       - name: Accept SDK licenses
-        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses < /dev/null || true
 
       - name: Install Android SDK packages
-        run: "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0"
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0"
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -46,3 +48,4 @@ jobs:
         with:
           name: KAPETZ-AI-APK
           path: app/build/outputs/apk/debug/app-debug.apk
+          
